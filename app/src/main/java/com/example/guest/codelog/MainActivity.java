@@ -7,10 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private FirebaseAuth mAuth;
+
     @Bind(R.id.logInButton) Button mLogInButton;
     @Bind(R.id.signUpButton) Button mSignUpButton;
     @Bind(R.id.enterEmail) EditText mEnterEmail;
@@ -21,7 +25,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mAuth = FirebaseAuth.getInstance();
+
         ButterKnife.bind(this);
+
+        mLogInButton.setOnClickListener(this);
+        mSignUpButton.setOnClickListener(this);
     }
 
     @Override
@@ -34,4 +43,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(signUpIntent);
         }
     }
+
 }
