@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.guest.codelog.R;
+import com.example.guest.codelog.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -46,14 +47,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         if(view == mSignUpSubmitButton){
             createNewUser();
-
         }
     }
 
     private void createNewUser(){
-        String name = mNewUserNameInput.getText().toString().trim();
-        String email = mNewUserEmailInput.getText().toString().trim();
-        String pass = mNewUserPasswordInput.getText().toString().trim();
+        final String name = mNewUserNameInput.getText().toString().trim();
+        final String email = mNewUserEmailInput.getText().toString().trim();
+        final String pass = mNewUserPasswordInput.getText().toString().trim();
         String confirm = mNewUserConfirmInput.getText().toString().trim();
 
         mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -61,9 +61,16 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(SignUpActivity.this, "New User Created Successfully", Toast.LENGTH_SHORT).show();
-
+                    String key = task.getResult().getUser().getUid();
+                    createUserFirebaseReference(name, email, pass, key);
                 }
             }
         });
+    }
+
+    private void createUserFirebaseReference(String name, String email, String password, String key){
+        createNewUser();
+        User newUser = new User(name, email, password);
+        mUserReference.child(key).setValue(newUser);
     }
 }
