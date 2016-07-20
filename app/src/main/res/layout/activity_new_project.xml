@@ -15,9 +15,80 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="CodeLog"
-        android:id="@+id/textView2"
-        android:textSize="40dp"
+        android:id="@+id/newProjectHeader"
+        android:textSize="50dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Create A New Project"
+        android:id="@+id/createNewProjectSub"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/newProjectHeader"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Project Title"
+        android:background="#eaeaea"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:id="@+id/projectTitleSubmit"
+        android:layout_above="@+id/firstPostTitleSubmit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/firstPostTitleSubmit"
+        android:layout_alignEnd="@+id/firstPostTitleSubmit" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/firstPostSubmit"
+        android:minLines="8"
+        android:background="#eaeaea"
+        android:hint="Enter Your First Post Here"
+        android:paddingLeft="8dp"
+        android:layout_above="@+id/submitNewProject"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/submitNewProject"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/firstPostSubmit"
+        android:layout_alignEnd="@+id/firstPostSubmit" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="First Post Title"
+        android:background="#eaeaea"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:id="@+id/firstPostTitleSubmit"
+        android:layout_above="@+id/firstPostSubmit"
+        android:layout_alignRight="@+id/submitNewProject"
+        android:layout_alignEnd="@+id/submitNewProject"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

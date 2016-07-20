@@ -44,7 +44,8 @@
         android:layout_alignStart="@+id/enterEmail"
         android:layout_marginTop="31dp"
         android:layout_alignRight="@+id/enterEmail"
-        android:layout_alignEnd="@+id/enterEmail" />
+        android:layout_alignEnd="@+id/enterEmail"
+        android:typeface="sans" />
 
     <Button
         style="?android:attr/buttonStyleSmall"

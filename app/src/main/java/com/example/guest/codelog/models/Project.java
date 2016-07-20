@@ -38,4 +38,8 @@ public class Project {
     public void setUserID(String userID) {
         this.userID = userID;
     }
+
+    public void addPostToProject(Post post){
+        this.posts.add(post);
+    }
 }
