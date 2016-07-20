@@ -1,4 +1,4 @@
-package com.example.guest.codelog;
+package com.example.guest.codelog.ui;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -8,16 +8,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.guest.codelog.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth mAuth;
+    private DatabaseReference mUserReference;
 
     @Bind(R.id.newUserNameInput) EditText mNewUserNameInput;
     @Bind(R.id.newUserEmailInput) EditText mNewUserEmailInput;
@@ -32,6 +36,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_sign_up);
 
         mAuth = FirebaseAuth.getInstance();
+        mUserReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
         ButterKnife.bind(this);
         mSignUpSubmitButton.setOnClickListener(this);
@@ -56,6 +61,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(SignUpActivity.this, "New User Created Successfully", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });

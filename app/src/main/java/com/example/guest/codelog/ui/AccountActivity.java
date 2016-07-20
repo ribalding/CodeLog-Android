@@ -1,7 +1,9 @@
-package com.example.guest.codelog;
+package com.example.guest.codelog.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.guest.codelog.R;
 
 public class AccountActivity extends AppCompatActivity {
 
