@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
-        android:id="@+id/button"
+        android:id="@+id/submitNewPost"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/newPostBody"
         android:layout_alignEnd="@+id/newPostBody" />

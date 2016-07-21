@@ -1,12 +1,17 @@
 package com.example.guest.codelog.models;
 
+import org.parceler.Parcel;
+
 /**
  * Created by Guest on 7/20/16.
  */
+@Parcel
 public class Post {
     private String title;
     private String postBody;
     private String projectID;
+
+    public Post(){}
 
     public Post(String title, String postBody, String projectID){
         this.postBody = postBody;

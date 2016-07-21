@@ -1,10 +1,13 @@
 package com.example.guest.codelog.models;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 
 /**
  * Created by Guest on 7/20/16.
  */
+@Parcel
 public class User {
     private String name;
     private String email;

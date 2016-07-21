@@ -1,10 +1,13 @@
 package com.example.guest.codelog.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.guest.codelog.R;
@@ -26,9 +29,10 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ProjectDetailActivity extends AppCompatActivity {
+public class ProjectDetailActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.postRecyclerView) RecyclerView mRecyclerView;
     @Bind(R.id.projectDetailName) TextView mProjectDetailName;
+    @Bind(R.id.addNewPost) Button mAddNewPost;
     private ArrayList<Project> mProjects;
     private DatabaseReference mUserReference;
     private FirebaseAuth mAuth;
@@ -52,6 +56,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_detail);
         ButterKnife.bind(this);
+        mAddNewPost.setOnClickListener(this);
 
         mUserReference.child("projects").child(projectKey).addValueEventListener(new ValueEventListener() {
             @Override
@@ -80,5 +85,14 @@ public class ProjectDetailActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == mAddNewPost){
+            Intent newPostIntent = new Intent(ProjectDetailActivity.this, NewPostActivity.class);
+            newPostIntent.putExtra("projectKey", projectKey);
+            startActivity(newPostIntent);
+        }
     }
 }
