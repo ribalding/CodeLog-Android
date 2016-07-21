@@ -1,10 +1,13 @@
 package com.example.guest.codelog.models;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 
 /**
  * Created by Guest on 7/20/16.
  */
+@Parcel
 public class Project {
     private String projectName;
     private ArrayList<Post> posts;
@@ -14,6 +17,8 @@ public class Project {
         this.projectName = projectName;
         this.userID = userID;
     }
+
+    public Project(){}
 
     public String getProjectName() {
         return projectName;
