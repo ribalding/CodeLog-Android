@@ -21,6 +21,11 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
     private ArrayList<Post> mPosts = new ArrayList<>();
     private Context mContext;
 
+    public PostListAdapter(Context context, ArrayList<Post> posts){
+        mPosts = posts;
+        mContext = context;
+    }
+
     @Override
     public PostListAdapter.PostViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_list_item, parent, false);
@@ -35,7 +40,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mPosts.size();
     }
 
     public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

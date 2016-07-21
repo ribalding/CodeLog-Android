@@ -2,10 +2,15 @@ package com.example.guest.codelog.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 
 import com.example.guest.codelog.R;
+import com.example.guest.codelog.adapters.PostListAdapter;
+import com.example.guest.codelog.adapters.ProjectListAdapter;
+import com.example.guest.codelog.models.Post;
 import com.example.guest.codelog.models.Project;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -22,11 +27,14 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class ProjectDetailActivity extends AppCompatActivity {
+    @Bind(R.id.postRecyclerView) RecyclerView mRecyclerView;
     @Bind(R.id.projectDetailName) TextView mProjectDetailName;
     private ArrayList<Project> mProjects;
     private DatabaseReference mUserReference;
     private FirebaseAuth mAuth;
     private String projectKey;
+    private PostListAdapter mAdapter;
+    private ArrayList<Post> mPosts = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +58,19 @@ public class ProjectDetailActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
               String projectName = dataSnapshot.child("projectName").getValue().toString();
                 mProjectDetailName.setText(projectName);
+                for(DataSnapshot postSnapshot : dataSnapshot.child("posts").getChildren()){
+                    String postTitle = postSnapshot.child("title").getValue().toString();
+                    Log.d("title", postTitle);
+                    String postBody = postSnapshot.child("postBody").getValue().toString();
+                    Log.d("postBody", postBody);
+                    Post newPost = new Post(postTitle, postBody, projectKey);
+                    mPosts.add(newPost);
+                }
+                mAdapter = new PostListAdapter(getApplicationContext(), mPosts);
+                mRecyclerView.setAdapter(mAdapter);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ProjectDetailActivity.this);
+                mRecyclerView.setLayoutManager(layoutManager);
+                mRecyclerView.setHasFixedSize(true);
             }
 
             @Override

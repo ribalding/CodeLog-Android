@@ -25,7 +25,8 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/projectDetailName"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:id="@+id/postRecyclerView" />
 
     <!--<fragment-->
         <!--android:id="@+id/fragmentRestaurantList"-->
