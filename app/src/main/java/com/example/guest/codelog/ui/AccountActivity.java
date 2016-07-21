@@ -36,7 +36,6 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
 
     private DatabaseReference mUserProjectsReference;
     private FirebaseAuth mAuth;
-    private ArrayList<Project> mProjects = new ArrayList<>();
     private String uid;
     private ProjectListAdapter mAdapter;
 
@@ -52,15 +51,17 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
 
         ButterKnife.bind(this);
         mUserProjectsReference.addValueEventListener(new ValueEventListener() {
+            private ArrayList<Project> mProjects = new ArrayList<>();
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                for(DataSnapshot projectSnapshot: dataSnapshot.getChildren()){
                    String projectTitle = projectSnapshot.child("projectName").getValue().toString();
-
                    Project newProject = new Project(projectTitle, uid);
                    mProjects.add(newProject);
                }
-
+                for(Project project : mProjects) {
+                    Log.d("test", project.getProjectName());
+                }
                 mAdapter = new ProjectListAdapter(getApplicationContext(), mProjects);
                 mRecyclerView.setAdapter(mAdapter);
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(AccountActivity.this);
@@ -74,7 +75,7 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-        Log.d("projects", mProjects.toString());
+
 
         mNewProject.setOnClickListener(this);
     }
