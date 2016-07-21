@@ -3,10 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#a32525"
     tools:context="com.example.guest.codelog.ui.ProjectDetailActivity">
+
+
+    <TextView
+        android:layout_width="286dp"
+        android:layout_height="wrap_content"
+        android:text="Project Name"
+        android:textColor="#eaeaea"
+        android:textSize="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/projectDetailName" />
+
+    <!--<fragment-->
+        <!--android:id="@+id/fragmentRestaurantList"-->
+        <!--android:name="com.example.guest.codelog.ui.ProjectDetailFragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--tools:layout="@layout/fragment_project_detail" />-->
 
 </RelativeLayout>

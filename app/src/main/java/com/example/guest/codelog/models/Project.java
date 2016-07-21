@@ -12,6 +12,7 @@ public class Project {
     private String projectName;
     private ArrayList<Post> posts;
     private String userID;
+    private String projectKey;
 
     public Project(String projectName, String userID){
         this.projectName = projectName;
@@ -20,16 +21,18 @@ public class Project {
 
     public Project(){}
 
-    public String getProjectName() {
-        return projectName;
-    }
+
+
+    public String getProjectKey() { return this.projectKey; }
+
+    public String getProjectName() {return this.projectName;}
 
     public ArrayList<Post> getPosts() {
-        return posts;
+        return this.posts;
     }
 
     public String getUserID() {
-        return userID;
+        return this.userID;
     }
 
     public void setProjectName(String projectName) {
@@ -43,6 +46,8 @@ public class Project {
     public void setUserID(String userID) {
         this.userID = userID;
     }
+
+    public void setProjectKey(String projectKey) { this.projectKey = projectKey; }
 
     public void addPostToProject(Post post){
         this.posts.add(post);

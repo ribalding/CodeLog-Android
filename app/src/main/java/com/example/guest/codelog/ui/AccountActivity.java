@@ -62,6 +62,8 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
                for(DataSnapshot projectSnapshot: dataSnapshot.getChildren()){
                    String projectTitle = projectSnapshot.child("projectName").getValue().toString();
                    Project newProject = new Project(projectTitle, uid);
+                   String projectKey = projectSnapshot.child("projectKey").getValue().toString();
+                   newProject.setProjectKey(projectKey);
                    mProjects.add(newProject);
                }
                 mAdapter = new ProjectListAdapter(getApplicationContext(), mProjects);

@@ -63,6 +63,7 @@ public class NewProjectActivity extends AppCompatActivity implements View.OnClic
         Project newProject = new Project(title, mUserKey);
         DatabaseReference pushRef = mUserReference.child("projects").push();
         String pushId = pushRef.getKey();
+        newProject.setProjectKey(pushId);
         Post newPost = new Post(firstPostTitle, firstPostBody, pushId);
         pushRef.setValue(newProject);
         DatabaseReference postRef = mUserReference.child("projects").child(pushId).child("posts").push();
