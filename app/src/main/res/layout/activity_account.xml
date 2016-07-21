@@ -13,20 +13,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"
+        android:id="@+id/projectHeader"
+        android:layout_marginTop="80dp"
+        android:text="Projects"
+        android:textSize="40dp"
+        android:textColor="#eaeaea"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="47dp"
-        android:text="Your Account"
-        android:textSize="50dp" />
+        android:layout_centerHorizontal="true" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recyclerView"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
+        android:layout_alignRight="@+id/newProject"
+        android:layout_alignEnd="@+id/newProject"
+        android:layout_below="@+id/projectHeader"
         android:layout_above="@+id/newProject" />
 
     <Button
@@ -38,5 +39,14 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/accountNameHeader"
+        android:textSize="40dp"
+        android:textColor="#eaeaea"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

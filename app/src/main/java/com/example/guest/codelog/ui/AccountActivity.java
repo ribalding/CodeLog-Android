@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.guest.codelog.R;
 import com.example.guest.codelog.adapters.ProjectListAdapter;
@@ -33,11 +34,13 @@ import butterknife.ButterKnife;
 public class AccountActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.newProject) Button mNewProject;
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    @Bind(R.id.accountNameHeader) TextView mAccountNameHeader;
 
     private DatabaseReference mUserProjectsReference;
     private FirebaseAuth mAuth;
     private String uid;
     private ProjectListAdapter mAdapter;
+    private String mUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,8 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
 
         mAuth = FirebaseAuth.getInstance();
         uid = mAuth.getCurrentUser().getUid();
+        mUserName = mAuth.getCurrentUser().getDisplayName();
+
         mUserProjectsReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("projects");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
@@ -59,9 +64,6 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
                    Project newProject = new Project(projectTitle, uid);
                    mProjects.add(newProject);
                }
-                for(Project project : mProjects) {
-                    Log.d("test", project.getProjectName());
-                }
                 mAdapter = new ProjectListAdapter(getApplicationContext(), mProjects);
                 mRecyclerView.setAdapter(mAdapter);
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(AccountActivity.this);
@@ -75,7 +77,7 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-
+        mAccountNameHeader.setText("Welcome Back " + mUserName);
 
         mNewProject.setOnClickListener(this);
     }
